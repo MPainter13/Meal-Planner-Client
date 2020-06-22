@@ -1,0 +1,34 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+  font-size: 20px;
+  text-align: left;
+}
+
+form {
+  display: inline-block;
+  padding: 5px;
+}
+ 
+.addForm > div { 
+  margin-top: 80px;
+  border: 1px solid black;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+input, label {
+  display: block;
+  margin: 10px 0 10px 0;
+}
+
+select, button {
+  display: inline-block;
+  margin: 5px auto 0;
+}
