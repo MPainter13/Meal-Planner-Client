@@ -7,46 +7,70 @@ import HomePage from './HomePage/HomePage';
 import LandingPage from './LandingPage/LandingPage';
 import LoginPage from './LoginPage/LoginPage';
 import SignUpPage from './SignUpPage/SignUpPage';
+import EditFrom from './EditForm/EditForm';
+import Context from './Context';
 
 class App extends Component {
+
+  state = {
+    currentUser: null,
+  }
+
+  setUser = (newUser) => {
+    console.log(newUser);
+    this.setState({ currentUser: newUser })
+  }
+
+  
+
   render() {
-  return (
-    <div className="App">
-      <header className="App-header">
-       <Header />
-      </header>
-      <main>
-        <Switch>
-          <Route 
-          exact 
-          path={'/'}
-          component={LandingPage} 
-          />
-          <Route
-          path={'/singUp'}
-          component={SignUpPage}
-          />
-          <Route
-          path={'/login'}
-          component={LoginPage}
-          />
-          <Route
-          path={'/home'}
-          component={HomePage}
-          />
-          <Route
-          path={'/add'}
-          component={AddForm}
-          />
-          <Route
-          path={'/meal'}
-          component={Meal}
-          />
-        </Switch>
-        </main>    
-    </div>
-  );
-}
+    const value = {
+      currentUser: this.state.currentUser,
+      setUser: this.setUser
+    }
+    return (
+    <Context.Provider value={value}>
+      <div className="App">
+        <header className="App-header">
+          <Header />
+        </header>
+        <main>
+          <Switch>
+            <Route
+              exact
+              path={'/'}
+              component={LandingPage}
+            />
+            <Route
+              path={'/signUp'}
+              render={(routeprops) => <SignUpPage setUser={this.setUser} {...routeprops} />}
+            />
+            <Route
+              path={'/login'}
+              component={LoginPage}
+            />
+            <Route
+              path={'/home'}
+              component={HomePage}
+            />
+            <Route
+              path={'/addForm'}
+              render={(routeprops) => <AddForm {...routeprops} currentUser={this.state.currentUser} />}
+            />
+            <Route
+              path={'/meal/:id'}
+              component={Meal}
+            />
+            <Route
+            path={'/edit/:id'}
+            component={EditFrom}
+            />
+          </Switch>
+        </main>
+      </div>
+      </Context.Provider>
+    );
+  }
 }
 
 export default App;

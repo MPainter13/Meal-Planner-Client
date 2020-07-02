@@ -4,10 +4,33 @@ import './Add.css'
 
 
 class AddForm extends Component {
+
+  handleSubmit = e => {
+    e.preventDefault()
+    const { selectMeal, selectDay, title, link, desc } = e.target
+    const meal = {
+      kind_of_meal: selectMeal.value,
+      day: selectDay.value,
+      title: title.value,
+      link: link.value,
+      description: desc.value
+    }
+    fetch('http://localhost:8000/meals', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${localStorage.authToken}`
+      },
+      body: JSON.stringify(meal)
+    })
+    .then(res => res.json())
+    .then(data => console.log(this.props.history.push('/home')))
+  }
+
   render() {
     return (
       <div className='addForm'>
-          <form>
+          <form onSubmit={this.handleSubmit}>
             <fieldset>
               <legend>Add new meal</legend>
               <select id="selectMeal">
@@ -28,9 +51,9 @@ class AddForm extends Component {
                 <option value="Fri">Friday</option>
                 <option value="Sat">Saturday</option>
               </select>
-              <label htmlFor="addNewMeal">Title</label>
-              <input type="text" id="addNewMeal" name="title" required />
-              <label htmlFor="link">Attach your recipe</label>
+              <label htmlFor="title">Title</label>
+              <input type="text" id="title" name="title" required />
+              <label htmlFor="link">Favorite recipe</label>
               <input type="url" id="link" name="url" />
               <label htmlFor="desc">Description</label>
               <textarea type="text" id="desc" name="desc" required rows="4" cols="50"></textarea>
@@ -38,9 +61,9 @@ class AddForm extends Component {
                 <Link to='/home'>
                   <button type="cancel">Cancel</button>
                 </Link>
-                <Link to='/home'>
+            
                 <button type="submit">Add</button>
-                </Link>
+                
               </div>
             </fieldset>
           </form>

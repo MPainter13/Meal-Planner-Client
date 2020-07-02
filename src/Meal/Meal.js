@@ -4,25 +4,82 @@ import './Meal.css'
 
 
 class Meal extends Component {
+
+  state = {
+    meal: {}
+  }
+
+  componentDidMount() {
+
+    fetch(`http://localhost:8000/meals/${this.props.match.params.id}`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${localStorage.authToken}`
+      },
+    })
+      .then((res) => {
+        if (!res.ok)
+          return res.json().then(e => Promise.reject(e));
+
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data)
+        this.setState({ 
+          meal: data
+         }) 
+        })
+
+
+      .catch(error => { console.error({ error }); });
+  }
+
+  onDelete = () => {
+
+    fetch(`http://localhost:8000/meals/${this.props.match.params.id}`, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${localStorage.authToken}`
+      },
+    })
+     
+      .then((data) => {
+        console.log(data)
+        this.props.history.push('/home')
+        })
+
+
+      .catch(error => { console.error({ error }); });
+  }
+
+
+
+
   render() {
+   const meal = this.state.meal || {}
     return (
       <div className='meal'>
         <header>
-          <h2>Chicken with broccoli</h2>
+    <h2>{meal.title}</h2>
         </header>
-        <h4>Dinner</h4>
-        <h4>Monday</h4>
+    <h4>{meal.kind}</h4>
+    <h4>{meal.day}</h4>
         <section>
-          Chicken with broccoli,penne pasta and white sos.
+          {meal.description}
     </section>
-        <p>Recipe: https://www.gimmesomeoven.com/chicken-broccoli-recipe/</p>
+    <p>{meal.link}</p>
 
-        <Link to='/home'>
-        <button type="button" class="button-delete">Delete</button>
+        
+          <button  onClick={this.onDelete} type="button" class="button-delete">Delete</button>
+        <Link to={'/edit/' + meal.id}>
+          <button>
+            Edit
+          </button>
         </Link>
-        <button type="submit">Edit</button>
         <Link to='/home'>
-        <button type="button">Cancel</button>
+          <button type="button">Go back</button>
         </Link>
       </div>
     )

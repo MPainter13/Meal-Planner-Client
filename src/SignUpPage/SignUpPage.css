@@ -11,7 +11,7 @@ form {
     padding: 10px;
 }
 
-.sign-up-page > div {
+/* .sign-up-page {
   margin-top: 80px;
   border: 1px solid black;
   border-radius: 3px;
@@ -21,7 +21,7 @@ form {
   align-items: center;
   margin-left: auto;
   margin-right: auto;
-}
+} */
 
 input, label {
   display: block;
@@ -32,4 +32,3 @@ button {
     display: inline-block;
     margin: 5px auto 0;
   }
-© 2020 GitHub, Inc.
