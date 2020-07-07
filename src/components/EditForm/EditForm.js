@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import TokenService from '../../services/token-service'
+import config from '../../config';
+
 
 class EditForm extends Component {
 
@@ -11,11 +14,11 @@ class EditForm extends Component {
 
     componentDidMount() {
 
-        fetch(`http://localhost:8000/meals/${this.props.match.params.id}`, {
+        fetch(`${config.API_ENDPOINT}/meals/${this.props.match.params.id}`, {
           method: 'GET',
           headers: {
             'content-type': 'application/json',
-            'Authorization': `Bearer ${localStorage.authToken}`
+            'Authorization': `bearer ${TokenService.getAuthToken()}`
           },
         })
           .then((res) => {
@@ -45,11 +48,11 @@ class EditForm extends Component {
             link: e.target.link.value
         }
 
-        fetch(`http://localhost:8000/meals/${this.props.match.params.id}`, {
+        fetch(`${config.API_ENDPOINT}/meals/${this.props.match.params.id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
-                'Authorization': `Bearer ${localStorage.authToken}`
+                'Authorization': `bearer ${TokenService.getAuthToken()}`
             },
             body: JSON.stringify(meal)
         })
@@ -71,11 +74,11 @@ class EditForm extends Component {
                         <legend>Add new meal</legend>
                         <select id="selectMeal" onChange={e => this.setState({meal:{...this.state.meal, kind_of_meal:e.target.value}})}value={this.state.meal.kind_of_meal}>
                             <option>Select Meal</option>
-                            <option value="breakfast">Breakfast</option>
-                            <option value="morningSnack">Morning snack</option>
-                            <option value="lunch">Lunch</option>
-                            <option value="afternoonSnack">Afternoon snack</option>
-                            <option value="dinner">Dinner</option>
+                            <option value="Breakfast">Breakfast</option>
+                            <option value="Morning Snack">Morning snack</option>
+                            <option value="Lunch">Lunch</option>
+                            <option value="Afternoon Snack">Afternoon snack</option>
+                            <option value="Dinner">Dinner</option>
                         </select>
                         <select id="selectDay" onChange={e => this.setState({meal:{...this.state.meal, day:e.target.value}})}value={this.state.meal.day}>
                             <option>Select Day</option>
@@ -92,8 +95,8 @@ class EditForm extends Component {
                         <label htmlFor="link">Favorite recipe</label>
                         <input type="url" id="link" defaultValue={this.state.meal.link} name="link" />
                         <label htmlFor="description">Description</label>
-                        <textarea type="text" id="description" name="description" defaultValue={this.state.meal.description} name="desc" required rows="4" cols="50"></textarea>
-                        <div class="buttons">
+                        <textarea type="text" id="description" name="description" defaultValue={this.state.meal.description} required rows="4" cols="50"></textarea>
+                        <div className="buttons">
                             <Link to='/home'>
                                 <button type="cancel">Go back</button>
                             </Link>

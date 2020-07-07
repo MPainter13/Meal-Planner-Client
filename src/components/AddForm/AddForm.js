@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import TokenService from '../../services/token-service'
+import config from '../../config';
 import './Add.css'
 
 
@@ -15,11 +17,11 @@ class AddForm extends Component {
       link: link.value,
       description: desc.value
     }
-    fetch('http://localhost:8000/meals', {
+    fetch(`${config.API_ENDPOINT}/meals`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
-        'Authorization': `Bearer ${localStorage.authToken}`
+        'Authorization': `Bearer ${TokenService.getAuthToken()}`
       },
       body: JSON.stringify(meal)
     })
@@ -30,16 +32,16 @@ class AddForm extends Component {
   render() {
     return (
       <div className='addForm'>
-          <form onSubmit={this.handleSubmit}>
+          <form className='addForm-form' onSubmit={this.handleSubmit}>
             <fieldset>
               <legend>Add new meal</legend>
               <select id="selectMeal">
                 <option>Select Meal</option>
-                <option value="breakfast">Breakfast</option>
-                <option value="morningSnack">Morning snack</option>
-                <option value="lunch">Lunch</option>
-                <option value="afternoonSnack">Afternoon snack</option>
-                <option value="dinner">Dinner</option>
+                <option value="Breakfast">Breakfast</option>
+                <option value="Morning Snack">Morning snack</option>
+                <option value="Lunch">Lunch</option>
+                <option value="Afternoon Snack">Afternoon snack</option>
+                <option value="Dinner">Dinner</option>
               </select>
               <select id="selectDay">
                 <option>Select Day</option>
@@ -57,7 +59,7 @@ class AddForm extends Component {
               <input type="url" id="link" name="url" />
               <label htmlFor="desc">Description</label>
               <textarea type="text" id="desc" name="desc" required rows="4" cols="50"></textarea>
-              <div class="buttons">
+              <div className="buttons">
                 <Link to='/home'>
                   <button type="cancel">Cancel</button>
                 </Link>

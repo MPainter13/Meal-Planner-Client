@@ -9,18 +9,19 @@ body {
   background: url("food_Vegetables.jpg");
 }
 
-/* .landingPage > section {
-  background: black;
-  visibility: visible;
-  opacity: 70%;
-  -webkit-filter: blur(4px);
-  filter: blur(4px);
-} */
+section {
+  background-color: rgba(255, 255, 255, .7);
+}
 
+p {
+  font-weight: bolder;
+}
 
 button {
+  font-size: medium;
     display: inline-block;
     margin: 5px auto 0;
+    margin-right: 5px;
 }
 
 @media screen and (min-width: 1024px) {

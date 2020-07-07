@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Header from './Header/Header';
-import AddForm from './AddForm/AddForm';
-import Meal from './Meal/Meal';
-import HomePage from './HomePage/HomePage';
-import LandingPage from './LandingPage/LandingPage';
-import LoginPage from './LoginPage/LoginPage';
-import SignUpPage from './SignUpPage/SignUpPage';
-import EditFrom from './EditForm/EditForm';
-import Context from './Context';
+import Header from '../Header/Header';
+import AddForm from '../AddForm/AddForm';
+import Meal from '../Meal/Meal';
+import HomePage from '../HomePage/HomePage';
+import LandingPage from '../LandingPage/LandingPage';
+import LoginPage from '../LoginPage/LoginPage';
+import SignUpPage from '../SignUpPage/SignUpPage';
+import EditFrom from '../EditForm/EditForm';
+import Context from '../../Context';
 
 class App extends Component {
 

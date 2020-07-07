@@ -1,0 +1,25 @@
+* {
+  box-sizing: border-box;
+}
+
+.form {
+  background-color: rgba(255, 255, 255, .7);
+  display: flex;
+  border-radius: 3px;
+  max-width: 500px;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding-bottom: 20px;
+}
+
+
+.form input, .form label {
+  display: block;
+  margin: 10px auto;
+}
+
+
+.red {
+  color: red;
+}

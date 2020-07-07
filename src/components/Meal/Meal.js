@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import TokenService from '../../services/token-service'
+import config from '../../config';
 import './Meal.css'
 
 
@@ -11,11 +13,11 @@ class Meal extends Component {
 
   componentDidMount() {
 
-    fetch(`http://localhost:8000/meals/${this.props.match.params.id}`, {
+    fetch(`${config.API_ENDPOINT}/meals/${this.props.match.params.id}`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
-        'Authorization': `Bearer ${localStorage.authToken}`
+        'Authorization': `bearer ${TokenService.getAuthToken()}`
       },
     })
       .then((res) => {
@@ -37,11 +39,11 @@ class Meal extends Component {
 
   onDelete = () => {
 
-    fetch(`http://localhost:8000/meals/${this.props.match.params.id}`, {
+    fetch(`${config.API_ENDPOINT}/meals/${this.props.match.params.id}`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json',
-        'Authorization': `Bearer ${localStorage.authToken}`
+        'Authorization': `bearer ${TokenService.getAuthToken()}`
       },
     })
      
@@ -62,17 +64,17 @@ class Meal extends Component {
     return (
       <div className='meal'>
         <header>
-    <h2>{meal.title}</h2>
+    <h3>{meal.title}</h3>
         </header>
-    <h4>{meal.kind}</h4>
-    <h4>{meal.day}</h4>
+        <h4>{meal.day}</h4><br/>
+    <h4>{meal.kind_of_meal}</h4>
         <section>
           {meal.description}
     </section>
     <p>{meal.link}</p>
 
         
-          <button  onClick={this.onDelete} type="button" class="button-delete">Delete</button>
+          <button  onClick={this.onDelete} type="button" className="button-delete">Delete</button>
         <Link to={'/edit/' + meal.id}>
           <button>
             Edit

@@ -13,9 +13,13 @@ h4 {
 }
 
 section {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 p {
   word-wrap: break-word;
+}
+
+.meal {
+  padding-bottom: 20px;
 }

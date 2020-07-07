@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+  font-size: 20px;
+}
+
+.addForm form {
+  background-color: white;
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid black;
+}
+
+
+.addForm textarea {
+  width: 100%;
+}
+
+.addForm input, .addForm label {
+  display: block;
+  margin: 10px auto;
+}
+
+select, button {
+  display: inline-block;
+  margin: 5px auto 0;
+}

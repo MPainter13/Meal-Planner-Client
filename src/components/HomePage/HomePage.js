@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './HomePage.css'
+import config from '../../config';
+import TokenService from '../../services/token-service'
 
 
 
@@ -12,14 +14,15 @@ class HomePage extends Component {
 
   componentDidMount() {
 
-    fetch('http://localhost:8000/meals', {
+    fetch(`${config.API_ENDPOINT}/meals`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
-        'Authorization': `Bearer ${localStorage.authToken}`
+        'Authorization': `bearer ${TokenService.getAuthToken()}`
       },
     })
       .then((res) => {
+        console.log(res)
         if (!res.ok)
           return res.json().then(e => Promise.reject(e));
 
@@ -36,6 +39,10 @@ class HomePage extends Component {
       .catch(error => { console.error({ error }); });
   }
 
+  handleLogOut = () => {
+    TokenService.clearAuthToken()
+  }
+
   render() {
     const meals = this.state.meals
     console.log(meals)
@@ -47,8 +54,8 @@ class HomePage extends Component {
         </Link>
         <div className='meal-entry'>
           {meals.map(meal => {
-            return <div className='meal'>
-              <Link className='mealID' to={'/meal/' + meal.id}>
+            return <div className='meal' key={meal.id}>
+              <Link className='mealID' to={'/meal/' + meal.id} key={meal.id}>
                 <p>{meal.day}<br/>{meal.kind_of_meal}<br/>{meal.title}</p>
               </Link>
             </div>
@@ -56,7 +63,7 @@ class HomePage extends Component {
           }
         </div>
         <Link to='/'>
-          <button type="submit">Logout</button>
+          <button onClick={this.handleLogOut}>Logout</button>
         </Link>
       </div>
     )
