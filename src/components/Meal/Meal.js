@@ -28,10 +28,10 @@ class Meal extends Component {
       })
       .then((data) => {
         console.log(data)
-        this.setState({ 
+        this.setState({
           meal: data
-         }) 
         })
+      })
 
 
       .catch(error => { console.error({ error }); });
@@ -46,11 +46,11 @@ class Meal extends Component {
         'Authorization': `bearer ${TokenService.getAuthToken()}`
       },
     })
-     
+
       .then((data) => {
         console.log(data)
         this.props.history.push('/home')
-        })
+      })
 
 
       .catch(error => { console.error({ error }); });
@@ -60,21 +60,21 @@ class Meal extends Component {
 
 
   render() {
-   const meal = this.state.meal || {}
+    const meal = this.state.meal || {}
     return (
       <div className='meal'>
         <header>
-    <h3>{meal.title}</h3>
+          <h3>{meal.day}</h3>
         </header>
-        <h4>{meal.day}</h4><br/>
-    <h4>{meal.kind_of_meal}</h4>
+        <h4>{meal.kind_of_meal}</h4><br />
+        <h4>{meal.title}</h4>
         <section>
           {meal.description}
-    </section>
-    <p>{meal.link}</p>
+        </section>
+        <p>{meal.link}</p>
 
-        
-          <button  onClick={this.onDelete} type="button" className="button-delete">Delete</button>
+
+        <button onClick={this.onDelete} type="button" className="button-delete">Delete</button>
         <Link to={'/edit/' + meal.id}>
           <button>
             Edit

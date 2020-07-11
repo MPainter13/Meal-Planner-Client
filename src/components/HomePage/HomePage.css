@@ -4,8 +4,6 @@
 
 body {
   text-align: center;
-  /* margin-left: 35%;
-  margin-right: 35%; */
 }
 
 .meal-entry {
@@ -18,7 +16,6 @@ body {
 
 .meal {
   border: 1px black solid;
-  margin-bottom: 5px;
   background-color: white;
 }
 

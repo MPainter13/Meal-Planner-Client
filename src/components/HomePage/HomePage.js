@@ -56,7 +56,7 @@ class HomePage extends Component {
           {meals.map(meal => {
             return <div className='meal' key={meal.id}>
               <Link className='mealID' to={'/meal/' + meal.id} key={meal.id}>
-                <p>{meal.day}<br/>{meal.kind_of_meal}<br/>{meal.title}</p>
+                <p>{meal.day}<br/>{meal.kind_of_meal}</p>
               </Link>
             </div>
           })
