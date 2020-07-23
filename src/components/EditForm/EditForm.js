@@ -3,40 +3,35 @@ import { Link } from 'react-router-dom';
 import TokenService from '../../services/token-service'
 import config from '../../config';
 
-
+//This component is to edit the meal. 
 class EditForm extends Component {
 
     state = {
-        meal: {
-
-        }
+        meal: {}
     }
 
     componentDidMount() {
-
         fetch(`${config.API_ENDPOINT}/meals/${this.props.match.params.id}`, {
-          method: 'GET',
-          headers: {
-            'content-type': 'application/json',
-            'Authorization': `bearer ${TokenService.getAuthToken()}`
-          },
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `bearer ${TokenService.getAuthToken()}`
+            },
         })
-          .then((res) => {
-            if (!res.ok)
-              return res.json().then(e => Promise.reject(e));
-    
-            return res.json();
-          })
-          .then((data) => {
-            console.log(data)
-            this.setState({ 
-              meal: data
-             }) 
+            .then((res) => {
+                if (!res.ok)
+                    return res.json().then(e => Promise.reject(e));
+
+                return res.json();
             })
-    
-    
-          .catch(error => { console.error({ error }); });
-      }
+            .then((data) => {
+                console.log(data)
+                this.setState({
+                    meal: data
+                })
+            })
+            .catch(error => { console.error({ error }); });
+    }
 
     onEdit = (e) => {
         e.preventDefault()
@@ -56,13 +51,10 @@ class EditForm extends Component {
             },
             body: JSON.stringify(meal)
         })
-
             .then((data) => {
                 console.log(data)
                 this.props.history.push('/home')
             })
-
-
             .catch(error => { console.error({ error }); });
     }
 
@@ -72,7 +64,7 @@ class EditForm extends Component {
                 <form onSubmit={this.onEdit}>
                     <fieldset>
                         <legend>Add new meal</legend>
-                        <select id="selectMeal" onChange={e => this.setState({meal:{...this.state.meal, kind_of_meal:e.target.value}})}value={this.state.meal.kind_of_meal}>
+                        <select id="selectMeal" onChange={e => this.setState({ meal: { ...this.state.meal, kind_of_meal: e.target.value } })} value={this.state.meal.kind_of_meal}>
                             <option>Select Meal</option>
                             <option value="Breakfast">Breakfast</option>
                             <option value="Morning Snack">Morning snack</option>
@@ -80,7 +72,7 @@ class EditForm extends Component {
                             <option value="Afternoon Snack">Afternoon snack</option>
                             <option value="Dinner">Dinner</option>
                         </select>
-                        <select id="selectDay" onChange={e => this.setState({meal:{...this.state.meal, day:e.target.value}})}value={this.state.meal.day}>
+                        <select id="selectDay" onChange={e => this.setState({ meal: { ...this.state.meal, day: e.target.value } })} value={this.state.meal.day}>
                             <option>Select Day</option>
                             <option value="Sun">Sunday</option>
                             <option value="Mon">Monday</option>
@@ -100,15 +92,12 @@ class EditForm extends Component {
                             <Link to='/home'>
                                 <button type="cancel">Go back</button>
                             </Link>
-
                             <button type="submit">Save</button>
-
                         </div>
                     </fieldset>
                 </form>
             </div>
         )
-
     }
 }
 

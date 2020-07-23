@@ -10,6 +10,8 @@ import SignUpPage from '../SignUpPage/SignUpPage';
 import EditFrom from '../EditForm/EditForm';
 import Context from '../../Context';
 
+
+//parent of all the other components
 class App extends Component {
 
   state = {
@@ -20,8 +22,6 @@ class App extends Component {
     console.log(newUser);
     this.setState({ currentUser: newUser })
   }
-
-  
 
   render() {
     const value = {

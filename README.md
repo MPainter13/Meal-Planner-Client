@@ -12,3 +12,9 @@ https://meal-planner-client.vercel.app/
 ## Technologies
 React, React Router, JavaScript, HTML, CSS
 
+## Screenshots
+<img src="./Screenshots/addMeal.png" width="400px"></img> 
+<img src="./Screenshots/homePage.png" width="400px"></img> 
+<img src="./Screenshots/landingPage.png" width="400px"></img> 
+
+

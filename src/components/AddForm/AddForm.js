@@ -4,7 +4,7 @@ import TokenService from '../../services/token-service'
 import config from '../../config';
 import './Add.css'
 
-
+//This component is for adding the meal to the list. 
 class AddForm extends Component {
 
   handleSubmit = e => {
@@ -63,9 +63,7 @@ class AddForm extends Component {
                 <Link to='/home'>
                   <button type="cancel">Cancel</button>
                 </Link>
-            
                 <button type="submit">Add</button>
-                
               </div>
             </fieldset>
           </form>

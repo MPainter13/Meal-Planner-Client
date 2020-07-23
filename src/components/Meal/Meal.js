@@ -4,7 +4,7 @@ import TokenService from '../../services/token-service'
 import config from '../../config';
 import './Meal.css'
 
-
+// This component is for displaying the details about the meal. 
 class Meal extends Component {
 
   state = {
@@ -12,7 +12,6 @@ class Meal extends Component {
   }
 
   componentDidMount() {
-
     fetch(`${config.API_ENDPOINT}/meals/${this.props.match.params.id}`, {
       method: 'GET',
       headers: {
@@ -32,13 +31,10 @@ class Meal extends Component {
           meal: data
         })
       })
-
-
       .catch(error => { console.error({ error }); });
   }
 
   onDelete = () => {
-
     fetch(`${config.API_ENDPOINT}/meals/${this.props.match.params.id}`, {
       method: 'DELETE',
       headers: {
@@ -46,17 +42,12 @@ class Meal extends Component {
         'Authorization': `bearer ${TokenService.getAuthToken()}`
       },
     })
-
       .then((data) => {
         console.log(data)
         this.props.history.push('/home')
       })
-
-
       .catch(error => { console.error({ error }); });
   }
-
-
 
 
   render() {
@@ -72,8 +63,6 @@ class Meal extends Component {
           {meal.description}
         </section>
         <p>{meal.link}</p>
-
-
         <button onClick={this.onDelete} type="button" className="button-delete">Delete</button>
         <Link to={'/edit/' + meal.id}>
           <button>

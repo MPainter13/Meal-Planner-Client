@@ -5,15 +5,13 @@ import config from '../../config';
 import TokenService from '../../services/token-service'
 
 
-
+//This component is for home page where you can see a list of your meals. 
 class HomePage extends Component {
-
   state = {
     meals: []
   }
 
   componentDidMount() {
-
     fetch(`${config.API_ENDPOINT}/meals`, {
       method: 'GET',
       headers: {
@@ -34,8 +32,6 @@ class HomePage extends Component {
           meals: data
         })
       })
-
-
       .catch(error => { console.error({ error }); });
   }
 
@@ -47,7 +43,6 @@ class HomePage extends Component {
     const meals = this.state.meals
     console.log(meals)
     return (
-
       <div className='homePage'>
         <Link to='/addForm'>
           <button id="addMeal" className="button">Add new meal</button>
@@ -56,7 +51,7 @@ class HomePage extends Component {
           {meals.map(meal => {
             return <div className='meal' key={meal.id}>
               <Link className='mealID' to={'/meal/' + meal.id} key={meal.id}>
-                <p>{meal.day}<br/>{meal.kind_of_meal}</p>
+                <p>{meal.day}<br />{meal.kind_of_meal}</p>
               </Link>
             </div>
           })

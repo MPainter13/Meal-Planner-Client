@@ -27,7 +27,6 @@ class LoginPage extends Component {
                 TokenService.saveAuthToken(res.authToken)
                 this.props.history.push('/home')
             })
-
             .catch(res => {
                 this.setState({ error: res.error })
             })
@@ -48,16 +47,12 @@ class LoginPage extends Component {
                         <input type="username" id="username" name="username" required />
                         <label htmlFor="password">Password</label>
                         <input type="password" id="password" name="password" required />
-
+                        <button type="submit" className='loginButton'>Login</button>
                         <Link to='/'>
                             <button type="cancel">Cancel</button>
                         </Link>
-
-                        <button type="submit" className='loginButton'>Login</button>
                     </fieldset>
-
                 </form>
-
             </div>
         )
     }
