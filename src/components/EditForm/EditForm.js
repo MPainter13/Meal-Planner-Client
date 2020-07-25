@@ -25,7 +25,6 @@ class EditForm extends Component {
                 return res.json();
             })
             .then((data) => {
-                console.log(data)
                 this.setState({
                     meal: data
                 })
@@ -52,7 +51,6 @@ class EditForm extends Component {
             body: JSON.stringify(meal)
         })
             .then((data) => {
-                console.log(data)
                 this.props.history.push('/home')
             })
             .catch(error => { console.error({ error }); });
@@ -74,13 +72,13 @@ class EditForm extends Component {
                         </select>
                         <select id="selectDay" onChange={e => this.setState({ meal: { ...this.state.meal, day: e.target.value } })} value={this.state.meal.day}>
                             <option>Select Day</option>
-                            <option value="Sun">Sunday</option>
-                            <option value="Mon">Monday</option>
-                            <option value="Tue">Tuesday</option>
-                            <option value="Wed">Wednesday</option>
-                            <option value="Thu">Thursday</option>
-                            <option value="Fri">Friday</option>
-                            <option value="Sat">Saturday</option>
+                            <option value="Sunday">Sunday</option>
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wedesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
                         </select>
                         <label htmlFor="title">Title</label>
                         <input type="text" id="title" defaultValue={this.state.meal.title} name="title" required />

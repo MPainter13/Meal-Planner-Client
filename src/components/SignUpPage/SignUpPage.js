@@ -26,7 +26,6 @@ class SignUpPage extends Component {
                 })
             })
             .then(res => {
-                console.log('login posted successfully')
                 username.value = ''
                 password.value = ''
                 email.value = ''
@@ -34,7 +33,6 @@ class SignUpPage extends Component {
                 this.props.history.push('/home')
             })
             .catch(res => {
-                console.log(res)
                 this.setState({ error: res.error })
             })
     }

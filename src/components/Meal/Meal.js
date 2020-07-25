@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import TokenService from '../../services/token-service'
+import TokenService from '../../services/token-service';
 import config from '../../config';
 import './Meal.css'
 
@@ -26,7 +26,6 @@ class Meal extends Component {
         return res.json();
       })
       .then((data) => {
-        console.log(data)
         this.setState({
           meal: data
         })
@@ -43,7 +42,6 @@ class Meal extends Component {
       },
     })
       .then((data) => {
-        console.log(data)
         this.props.history.push('/home')
       })
       .catch(error => { console.error({ error }); });

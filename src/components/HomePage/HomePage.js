@@ -20,14 +20,12 @@ class HomePage extends Component {
       },
     })
       .then((res) => {
-        console.log(res)
         if (!res.ok)
           return res.json().then(e => Promise.reject(e));
 
         return res.json();
       })
       .then((data) => {
-        console.log(data)
         this.setState({
           meals: data
         })
@@ -41,7 +39,6 @@ class HomePage extends Component {
 
   render() {
     const meals = this.state.meals
-    console.log(meals)
     return (
       <div className='homePage'>
         <Link to='/addForm'>
