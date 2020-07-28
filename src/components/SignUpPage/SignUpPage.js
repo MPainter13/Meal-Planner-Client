@@ -33,9 +33,9 @@ class SignUpPage extends Component {
                 this.props.history.push('/home')
             })
             .catch(res => {
-                this.setState({ error: res.error })
-            })
-    }
+                this.setState({ error: res.error })        
+    })
+};
 
     render() {
         const { error } = this.state
